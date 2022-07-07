@@ -10,7 +10,7 @@ export default function Repos({repos, title}: RepoProps) {
         <ul>
             {repos.map((repo, index)=> {
                 return <li data-testid="list-item" key={index}>
-                    <p>Name: {repo.name}</p>
+                    <p>{repo.name}</p>
                     <p>updated at: {repo.updated_at}</p>
                     <p>stars: {repo.stargazers_count}</p>
                 </li>

@@ -31,13 +31,7 @@ beforeAll(async ()=> {
 });
 
 describe("App.tsx", ()=>{
-  test("renders the title of the app",()=> {
-
-    render(< App />)
-    const titleEl = screen.getByText("Stackbuilders repo list")
-
-    expect(titleEl).toBeInTheDocument()
-  });
+ 
 
 
   test("renders a list of repositories that have more than 5 stars",()=>{

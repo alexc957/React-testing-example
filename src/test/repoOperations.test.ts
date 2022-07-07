@@ -2,8 +2,9 @@
 
 import { generateFakeData } from '../data/fakeRepos';
 import {getData} from '../data/getData'
+import { IRepository } from '../IRepository';
 
-import { filterByStars, getLatesUpdatedtRepos, sumOfStars } from '../repoOperations';
+import { filterByStars, getLatesUpdatedtRepos, pipe, sumOfStars } from '../repoOperations';
 
 
 
@@ -24,6 +25,14 @@ beforeAll(async ()=> {
 
 describe("filterByStars",()=> {  
  
+
+    
+    test("when filtering the repositories without passing the numStars argument, must return all the repos with startgazers_count>5",()=> {
+        const filteredRepos = filterByStars(repos,5)
+        expect(filteredRepos.length).toBe(5)
+    })
+    
+    
 
     test("when filtering the repositories that have more than 5 stars ",()=> {
         const filteredRepos = filterByStars(repos,5)
@@ -56,7 +65,11 @@ describe("getLatesUpdatedtRepos",()=> {
 
     });
 
- 
+    test("when passing the number of repos to return is equal to the length of total of repositoires", ()=> {
+        const latestRepos = getLatesUpdatedtRepos(repos, repos.length);
+        expect(latestRepos.length ).toBe(repos.length)
+    
+})
 });
 
 
@@ -74,8 +87,43 @@ describe("sumOfStars",()=> {
 
     });
 
+    test("when passing an empty arry sum must be 0",()=> {
+        const sum = sumOfStars([]);
+        expect(sum).toBe(0);
+    })
+
  
 });
+
+
+describe("pipe",()=> {
+
+    test("when using all the functions in a pipe function with the default values ", ()=> {
+        const pipeVal = pipe(
+            filterByStars,
+            getLatesUpdatedtRepos,
+            sumOfStars
+        )(repos)
+        expect(pipeVal).toBe(40)
+
+    });
+
+
+    test("when passing the num of stars and num of latest updated repos", ()=> {
+       
+        const pipeVal = pipe(
+            (repos: IRepository[]) => filterByStars(repos,6),
+            (repos: IRepository[]) => getLatesUpdatedtRepos(repos,2),
+            sumOfStars,  
+        )(repos);
+
+        expect(pipeVal).toBe(15);
+
+    })
+    
+    
+
+})
 
 
 

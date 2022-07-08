@@ -36,7 +36,7 @@ describe("filterByStars",()=> {
 
     test("when filtering the repositories that have more than 5 stars ",()=> {
         const filteredRepos = filterByStars(repos,5)
-        expect(filteredRepos.length).toBe(5)  // some list that needs to be implements. 
+        expect(filteredRepos.length).toBe(5)  
 
 
     });
@@ -74,11 +74,6 @@ describe("getLatesUpdatedtRepos",()=> {
 
 
 describe("sumOfStars",()=> {  
-    /*let repos: any = [];
-    beforeAll(async ()=> {
-            repos = await getData(""); // get the repos from the API, mock this lol 
-           // console.log('repos ', repos)
-    }); */
 
     test("when getting the sum of all the repositories stars ",()=> {
         const sum  = sumOfStars(repos)
@@ -87,7 +82,7 @@ describe("sumOfStars",()=> {
 
     });
 
-    test("when passing an empty arry sum must be 0",()=> {
+    test("when passing an empty array sum must be 0",()=> {
         const sum = sumOfStars([]);
         expect(sum).toBe(0);
     })
@@ -107,6 +102,9 @@ describe("pipe",()=> {
         expect(pipeVal).toBe(40)
 
     });
+
+
+
 
 
     test("when passing the num of stars and num of latest updated repos", ()=> {

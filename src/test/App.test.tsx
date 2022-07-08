@@ -8,15 +8,6 @@ import { IRepository } from '../IRepository';
 import Badge from '../components/Badge';
 import Repos from '../components/Repos';
 
-/*test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-*/
-
-
 const mockRepos = () => generateFakeData()
 
 jest.mock('../data/getData',()=> ({
@@ -30,7 +21,7 @@ beforeAll(async ()=> {
         repos = await getData(""); 
 });
 
-describe("App.tsx", ()=>{
+describe("Repos.tsx", ()=>{
  
 
 
@@ -58,6 +49,12 @@ describe("App.tsx", ()=>{
   })
 
 
+
+})
+
+
+describe("Badge.tsx", () => {
+
   test("renders the sum of the stars of all repositories",()=> {
 
 
@@ -68,12 +65,16 @@ describe("App.tsx", ()=>{
     const sumEl = screen.getByText("54");
 
     expect(sumEl).toBeInTheDocument();
+  });
+
+
+  test("renders a harcoded value",()=>{
+    const harcodedValue = 3333;
+    render(<Badge value={harcodedValue} />);
+    expect(screen.getByText(`${harcodedValue}`)).toBeInTheDocument();
   })
 
-
-
-
-})
+} )
 
 
 

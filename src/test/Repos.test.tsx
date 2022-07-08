@@ -56,7 +56,7 @@ beforeAll(async ()=> {
             render(<Repos repos={[]} title="Empty list "  />)
             const listEl = screen.queryAllByRole("listitem");
 
-            expect(listEl.length).toBe(0)
+            expect(listEl).toHaveLength(0)
 
         })
     })

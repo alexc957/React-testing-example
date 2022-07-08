@@ -36,9 +36,9 @@ function App() {
       <div className='container'>
         <Repos repos={reposByNumStars} title="Repositories with more than 5 stars "/>
         <Repos repos={latestUpdatedRepos}   title="Last 5 updated repositories  "/>
-
+        <Badge  value={starsSum}/>
       </div>
-      <Badge  value={starsSum}/>
+      
       
     </div>
   );

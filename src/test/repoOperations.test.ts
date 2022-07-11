@@ -5,7 +5,6 @@ import { IRepository } from "../IRepository";
 import {
   filterByStars,
   getLatesUpdatedtRepos,
-  pipe,
   sumOfStars,
 } from "../repoOperations";
 
@@ -22,7 +21,7 @@ beforeAll(async () => {
 
 describe("[Unit] repoOperations.test.ts", () => {
   describe(".filterByStars", () => {
-    describe("when filtering the repositories without passing the numStars argument, must return all the repos with stargazers_count>5", () => {
+    describe("when filtering the repositories without passing the numStars argument", () => {
       it("returns an array of 5 items", () => {
         const filteredRepos = filterByStars(repos);
         expect(filteredRepos.length).toBe(5);

@@ -2,10 +2,7 @@ import { IRepository } from "./IRepository";
 
 
 
-export const filterByStars = (repos: IRepository[], numStars:number=5) => {
-
-
-    
+export const filterByStars = (repos: IRepository[], numStars:number=5) => {    
     return repos.filter((repo)=> repo.stargazers_count>numStars);
 }
 

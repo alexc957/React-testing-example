@@ -45,6 +45,12 @@
       "./src/IRepository.ts",
       "./src/CustomTypes.ts"
     ],
-    "coverageReporters": ["json", "html"]
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  },
+  "devDependencies": {
+    "msw": "^0.43.1"
   }
 }

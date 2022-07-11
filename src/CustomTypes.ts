@@ -1,10 +1,10 @@
-import { IRepository } from "./IRepository"
+import { IRepository } from "./IRepository";
 
-export type RepoProps  = {
-    repos: IRepository[],
-    title: string
-}
+export type RepoProps = {
+  repos: IRepository[];
+  title: string;
+};
 
 export type BadgeProps = {
-         value: number;
-}
+  value: number;
+};

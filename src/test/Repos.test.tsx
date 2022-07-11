@@ -7,7 +7,7 @@ import { filterByStars, getLatesUpdatedtRepos } from "../repoOperations";
 
 let repos: IRepository[] = [];
 beforeAll(async () => {
-  repos = await getData("/orgs/stackbuilders/repos");
+  repos = await getData("https://api.github.com/orgs/stackbuilders/repos");
 });
 
 describe("List of repositories", () => {
@@ -34,7 +34,7 @@ describe("List of repositories", () => {
     });
   });
 
-  describe("when passing an empty list to the Repos component", () => {
+  describe("when passing an empty array", () => {
     it("does not render a list of items ", () => {
       render(<Repos repos={[]} title="Empty list " />);
       const listEl = screen.queryAllByRole("listitem");

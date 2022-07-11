@@ -8,26 +8,26 @@ import {
 
 let repos: any = [];
 beforeAll(async () => {
-  repos = await getData("/orgs/stackbuilders/repos");
+  repos = await getData("https://api.github.com/orgs/stackbuilders/repos");
 });
 
 describe("[Unit] RepoOperations.test.ts", () => {
-  describe(".filterByStars", () => {
-    describe("when filtering the repositories without passing the numStars argument", () => {
-      it("returns an array of 5 items", () => {
+  describe("filterByStars", () => {
+    describe("when filtering the repositories without passing the numStars", () => {
+      it("returns an array with a length of 5", () => {
         const filteredRepos = filterByStars(repos);
         expect(filteredRepos.length).toBe(5);
       });
     });
 
-    describe("when filtering the repositories that have more than 5 stars ", () => {
-      it("returns an array of 5 items", () => {
-        const filteredRepos = filterByStars(repos, 5);
-        expect(filteredRepos.length).toBe(5);
+    describe("when passing 6 as a the value of numStars ", () => {
+      it("returns an array with a length of 4", () => {
+        const filteredRepos = filterByStars(repos, 6);
+        expect(filteredRepos.length).toBe(4);
       });
     });
 
-    describe("when filtering the repositories that have a number of stars greater than a negative number", () => {
+    describe("when passing a negative number as the value of numStars", () => {
       it("returns the same repo array", () => {
         const filteredRepos = filterByStars(repos, -3);
         expect(filteredRepos).toEqual(repos);
@@ -36,8 +36,8 @@ describe("[Unit] RepoOperations.test.ts", () => {
   });
 
   describe(".getLatesUpdatedtRepos", () => {
-    describe("when getting the 5 latest updated repositories. ", () => {
-      it("returns an array of the latest updated repositories", () => {
+    describe("when calling the function without passing the numRepos ", () => {
+      it("returns an array of length 5", () => {
         const latestRepos = getLatesUpdatedtRepos(repos);
         expect(latestRepos.length).toBe(5);
         expect(latestRepos[0]).toEqual(repos[repos.length - 1]);
@@ -53,14 +53,14 @@ describe("[Unit] RepoOperations.test.ts", () => {
   });
 
   describe(".sumOfStars", () => {
-    describe("when getting the sum of all the repositories stars ", () => {
+    describe("when passing the current array ", () => {
       it("returns the value of 54", () => {
         const sum = sumOfStars(repos);
         expect(sum).toBe(54); // some number
       });
     });
 
-    describe("when passing an empty array sum must be 0", () => {
+    describe("when passing an empty array", () => {
       it("returns the value of 0", () => {
         const sum = sumOfStars([]);
         expect(sum).toBe(0);

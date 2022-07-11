@@ -23,7 +23,9 @@ function App() {
   useEffect(() => {
     const fetchInitialRender = async () => {
       try {
-        const data = await getData("/orgs/stackbuilders/repos");
+        const data = await getData(
+          "https://api.github.com/orgs/stackbuilders/repos"
+        );
         setRepos(data);
       } catch (e) {}
     };

@@ -1,50 +1,36 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import Repos from "../components/Repos";
-import { generateFakeData } from "../data/fakeRepos";
 import { getData } from "../data/getData";
 import { IRepository } from "../IRepository";
 import { filterByStars, getLatesUpdatedtRepos } from "../repoOperations";
 
-const mockRepos = () => generateFakeData();
-
-jest.mock("../data/getData", () => ({
-  getData: jest.fn(() => mockRepos()),
-}));
-
 let repos: IRepository[] = [];
 beforeAll(async () => {
-  repos = await getData("");
+  repos = await getData("/orgs/stackbuilders/repos");
 });
 
 describe("List of repositories", () => {
-  describe("when the repos array is not empty", () => {
-    it("renders a list of repositories that have more than 5 stars", () => {
-      const filteredaRepos = filterByStars(repos, 5); // no usar jest
+  describe("when the repos array has 9 items", () => {
+    it("renders a list of 9 items", () => {
       render(
-        <Repos
-          repos={filteredaRepos}
-          title="Repositories with more than 5 stars "
-        />
+        <Repos repos={repos} title="Repositories with more than 5 stars " />
       );
       const listEl = screen.getAllByRole("listitem");
 
-      expect(listEl.length).toBe(5);
+      expect(listEl.length).toBe(9);
     });
+  });
 
-    it("renders a list of the five latest updated repositories", () => {
-      const filteredaRepos = getLatesUpdatedtRepos(repos);
+  describe("when passing an array of 2 elements", () => {
+    it("renders an array of 2 items ", () => {
+      const myArray = repos.slice(0, 2);
       render(
-        <Repos repos={filteredaRepos} title="Last 5 updated repositories  " />
+        <Repos repos={myArray} title="Repositories with more than 5 stars " />
       );
-
       const listEl = screen.getAllByRole("listitem");
 
-      expect(listEl.length).toBe(5);
-
-      const lastRepo = repos[repos.length - 1];
-
-      expect(screen.getByText(lastRepo.name)).toBeInTheDocument();
+      expect(listEl.length).toBe(2);
     });
   });
 

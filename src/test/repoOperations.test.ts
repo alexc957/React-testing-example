@@ -1,6 +1,4 @@
-import { generateFakeData } from "../data/fakeRepos";
 import { getData } from "../data/getData";
-import { IRepository } from "../IRepository";
 
 import {
   filterByStars,
@@ -8,18 +6,12 @@ import {
   sumOfStars,
 } from "../repoOperations";
 
-const mockRepos = () => generateFakeData();
-
-jest.mock("../data/getData", () => ({
-  getData: jest.fn(() => mockRepos()),
-}));
-
 let repos: any = [];
 beforeAll(async () => {
-  repos = await getData("");
+  repos = await getData("/orgs/stackbuilders/repos");
 });
 
-describe("[Unit] repoOperations.test.ts", () => {
+describe("[Unit] RepoOperations.test.ts", () => {
   describe(".filterByStars", () => {
     describe("when filtering the repositories without passing the numStars argument", () => {
       it("returns an array of 5 items", () => {
@@ -52,7 +44,7 @@ describe("[Unit] repoOperations.test.ts", () => {
       });
     });
 
-    describe("when passing the number of repos to return is equal to the length of total of repositoires", () => {
+    describe("when numRepos is equal to the lenght of the repos array ", () => {
       it("returns an array of the same length", () => {
         const latestRepos = getLatesUpdatedtRepos(repos, repos.length);
         expect(latestRepos.length).toBe(repos.length);

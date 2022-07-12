@@ -26,8 +26,3 @@ export const getLatesUpdatedtRepos = (
     ? sortedRepos.slice(0, numRepos)
     : sortedRepos;
 };
-
-export const pipe =
-  (...fns: Function[]) =>
-  (x: any) =>
-    fns.reduce((y, f) => f(y), x);

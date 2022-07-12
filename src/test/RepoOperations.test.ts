@@ -1,4 +1,5 @@
 import { getData } from "../data/getData";
+import { IRepository } from "../IRepository";
 
 import {
   filterByStars,
@@ -6,7 +7,7 @@ import {
   sumOfStars,
 } from "../repoOperations";
 
-let repos: any = [];
+let repos: IRepository[] = [];
 beforeAll(async () => {
   repos = await getData("https://api.github.com/orgs/stackbuilders/repos");
 });

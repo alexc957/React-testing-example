@@ -15,7 +15,7 @@ describe("Sum of stars badge", () => {
   });
 
   describe("when passing a value of zero", () => {
-    it("renders a value of 0 when computing the sum of stars of a empty array", () => {
+    it("renders a value of 0", () => {
       render(<Badge value={0} />);
 
       const sumEl = screen.getByText("0");
